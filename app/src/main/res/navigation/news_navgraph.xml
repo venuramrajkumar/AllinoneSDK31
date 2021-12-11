@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_breakingnews">
+
+    <fragment
+        android:id="@+id/navigation_breakingnews"
+        android:name="com.example.allinone.ui.ui.breakingnews.BreakingNewsFragment"
+        android:label="@string/title_breakingnews"
+        tools:layout="@layout/fragment_breakingnews" >
+        <action
+            android:id="@+id/action_navigation_breakingnews_to_articleFragment"
+            app:destination="@id/articleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_savednews"
+        android:name="com.example.allinone.ui.ui.savednews.SavedNewsFragment"
+        android:label="@string/title_savednews"
+        tools:layout="@layout/fragment_savednews" >
+        <action
+            android:id="@+id/action_navigation_savednews_to_articleFragment"
+            app:destination="@id/articleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_searchnews"
+        android:name="com.example.allinone.ui.ui.searchnews.SearchNewsFragment"
+        android:label="@string/title_searchnews"
+        tools:layout="@layout/fragment_searchnews" >
+        <action
+            android:id="@+id/action_navigation_searchnews_to_articleFragment"
+            app:destination="@id/articleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.example.allinone.ui.ui.article.ArticleFragment"
+        android:label="ArticleFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
+</navigation>

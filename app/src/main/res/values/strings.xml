@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">All in One</string>
+    <string name="title_activity_navigation_host">NavigationHostActivity</string>
+    <string name="title_breakingnews">Breaking News</string>
+    <string name="title_savednews">Saved News</string>
+    <string name="title_searchnews">Search News</string>
+</resources>
