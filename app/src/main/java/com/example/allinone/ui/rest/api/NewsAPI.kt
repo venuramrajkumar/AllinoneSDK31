@@ -26,14 +26,14 @@ interface NewsAPI {
         @Query ("q")
         searchquery : String,
 
-        @Query("from")
+        /*@Query("from")
         fromDate: String,
 
         @Query("to")
         toDate : String,
 
         @Query("sortBy")
-        sortBy : String = "popularity",
+        sortBy : String = "popularity",*/
 
         @Query("apiKey")
         apikey : String = API_KEY
