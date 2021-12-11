@@ -9,8 +9,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.allinone.R
 import com.example.allinone.databinding.ActivityNavigationHostBinding
-import com.example.allinone.ui.db.ArticleDatabase
-import com.example.allinone.ui.repository.NewsRepository
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -25,14 +23,11 @@ class NewsActivity : AppCompatActivity() {
 
         binding = ActivityNavigationHostBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//TODO : refactor this
 
-        val repository = NewsRepository(ArticleDatabase(this.applicationContext))
-        val viewModelProviderFactory = ViewModelProviderFactory(repository)
+        val viewModelProviderFactory = ViewModelProviderFactory(this.applicationContext)
         viewModel = ViewModelProvider(this,viewModelProviderFactory).get(NewsViewModel::class.java)
         setBottomNavigationView()
     }
-
 
 
     private fun setBottomNavigationView() {
