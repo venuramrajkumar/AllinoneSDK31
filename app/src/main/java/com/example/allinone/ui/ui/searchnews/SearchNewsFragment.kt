@@ -10,7 +10,9 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.allinone.R
 import com.example.allinone.databinding.FragmentSearchnewsBinding
 import com.example.allinone.ui.adapter.NewsAdapter
 import com.example.allinone.ui.ui.launchnews.NewsActivity
@@ -56,6 +58,13 @@ class SearchNewsFragment : Fragment() {
 
         setSearcnNewsObserver()
         setupRecyclerView()
+
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article",it)
+            }
+            findNavController().navigate(R.id.action_navigation_searchnews_to_articleFragment,bundle)
+        }
 
     }
 

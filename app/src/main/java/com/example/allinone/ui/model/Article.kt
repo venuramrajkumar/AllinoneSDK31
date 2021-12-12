@@ -2,6 +2,7 @@ package com.example.allinone.ui.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "articles")
 data class Article(
@@ -17,4 +18,5 @@ data class Article(
     val title: String,
     val url: String,
     val urlToImage: String
-)
+) : Serializable
+// As Article is not primitive class, to pass this object betweeen fragments , we need to use serializable

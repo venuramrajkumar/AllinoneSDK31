@@ -8,7 +8,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.allinone.R
 import com.example.allinone.databinding.FragmentSavednewsBinding
+import com.example.allinone.ui.adapter.NewsAdapter
 import com.example.allinone.ui.ui.launchnews.NewsActivity
 import com.example.allinone.ui.ui.launchnews.NewsViewModel
 
@@ -21,6 +25,7 @@ class SavedNewsFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    lateinit var newsAdapter: NewsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,5 +49,22 @@ class SavedNewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as NewsActivity).viewModel
+        setupRecyclerView()
+
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article",it)
+            }
+            findNavController().navigate(R.id.action_navigation_savednews_to_articleFragment,bundle)
+        }
+    }
+
+    private fun setupRecyclerView() {
+        newsAdapter = NewsAdapter()
+        _binding?.rvSavedNews.apply {
+            this?.adapter = newsAdapter
+            this?.layoutManager = LinearLayoutManager(activity)
+        }
+
     }
 }

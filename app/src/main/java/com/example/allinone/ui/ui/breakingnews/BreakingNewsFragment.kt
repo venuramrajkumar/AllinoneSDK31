@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.allinone.R
 import com.example.allinone.databinding.FragmentBreakingnewsBinding
 import com.example.allinone.ui.adapter.NewsAdapter
 import com.example.allinone.ui.ui.launchnews.NewsActivity
@@ -49,6 +51,14 @@ class BreakingNewsFragment : Fragment() {
 
         setupRecyclerView()
         setBreakingNewsObserver()
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article",it)
+            }
+            findNavController().navigate(R.id.action_navigation_breakingnews_to_articleFragment,bundle)
+        }
+
+
     }
 
     private fun setBreakingNewsObserver() {
