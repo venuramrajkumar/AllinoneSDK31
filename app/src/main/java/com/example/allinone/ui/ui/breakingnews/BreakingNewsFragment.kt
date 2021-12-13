@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -81,7 +79,9 @@ class BreakingNewsFragment : Fragment() {
                 }
                 is Resource.Error -> {
                     hideProgressbar()
-                    response.message?.let { Log.e(TAG, "Error Occured $it") }
+                    response.message?.let {
+                    Toast.makeText(activity,"No Internent",Toast.LENGTH_SHORT).show()
+                        Log.e(TAG, "Error Occured $it") }
                 }
                 is Resource.Loading -> {
                     showProgressbar()

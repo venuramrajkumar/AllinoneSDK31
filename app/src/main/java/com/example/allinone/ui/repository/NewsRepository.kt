@@ -15,7 +15,7 @@ class NewsRepository(val databse: ArticleDatabase) {
     suspend fun saveAndUpdateArticles(article: Article) =
         databse.getArticleDao().saveAndUpdateArticles(article)
 
-     fun getSavedNews() = databse.getArticleDao().getAllArticles()
+    fun getSavedNews() = databse.getArticleDao().getAllArticles()
 
     suspend fun deleteArticle(article: Article) = databse.getArticleDao().deleteArticle(article)
 

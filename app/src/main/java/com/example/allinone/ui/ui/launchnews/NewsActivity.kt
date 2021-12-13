@@ -24,7 +24,7 @@ class NewsActivity : AppCompatActivity() {
         binding = ActivityNavigationHostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val viewModelProviderFactory = ViewModelProviderFactory(this.applicationContext)
+        val viewModelProviderFactory = ViewModelProviderFactory(application)
         viewModel = ViewModelProvider(this,viewModelProviderFactory).get(NewsViewModel::class.java)
         setBottomNavigationView()
     }

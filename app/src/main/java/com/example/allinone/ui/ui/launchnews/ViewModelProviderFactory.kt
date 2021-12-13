@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.allinone.ui.db.ArticleDatabase
 import com.example.allinone.ui.repository.NewsRepository
 
-class ViewModelProviderFactory(val applicationContext: Context) : ViewModelProvider.Factory{
+class ViewModelProviderFactory(val app: Application) : ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return NewsViewModel(NewsRepository(ArticleDatabase(applicationContext))) as T
+        return NewsViewModel(app ,NewsRepository(ArticleDatabase(app))) as T
     }
 }
