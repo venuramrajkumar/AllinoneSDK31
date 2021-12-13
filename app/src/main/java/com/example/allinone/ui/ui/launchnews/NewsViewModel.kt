@@ -22,6 +22,9 @@ class NewsViewModel(val newsRepository: NewsRepository) : ViewModel() {
     val searchNewsLiveData: LiveData<Resource<NewsResponse>> = searchNews
     var breakingNewsPage = 1
     var searchNewsPage = 1
+    var breakingNewsResponse : NewsResponse? = null
+    var searchNewsResponse : NewsResponse? = null
+
     var category: String = "business"
 
     val breakingNewsExceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
@@ -41,7 +44,7 @@ class NewsViewModel(val newsRepository: NewsRepository) : ViewModel() {
     fun getBreakingNews(countryCode: String) = viewModelScope.launch(breakingNewsExceptionHandler) {
 
         breakingNews.value = Resource.Loading()
-        val response = newsRepository.getBreakingNews(countryCode, category)
+        val response = newsRepository.getBreakingNews(countryCode,category,breakingNewsPage)
         breakingNews.postValue(handleBreakingNewsResponse(response))
 
 //        Regular way of exception handling with Try catch. But we can use coroutine Exception Handler
@@ -54,10 +57,10 @@ class NewsViewModel(val newsRepository: NewsRepository) : ViewModel() {
 
     }
 
-    suspend fun searchNews(query: String) =
+     fun searchNews(query: String) =
         viewModelScope.launch(searchNewsExceptionHandler) {
             searchNews.postValue(Resource.Loading())
-            val response = newsRepository.getSearchedNews(query)
+            val response = newsRepository.getSearchedNews(query,searchNewsPage)
             searchNews.postValue(handleSearchNewsResponse(response))
         }
 
@@ -65,7 +68,18 @@ class NewsViewModel(val newsRepository: NewsRepository) : ViewModel() {
 
         if (response.isSuccessful) {
             response.body()?.let { resultResponse ->
-                return Resource.Success(resultResponse)
+                breakingNewsPage++
+
+                if (breakingNewsResponse == null) {
+                    breakingNewsResponse = resultResponse
+                } else {
+                    val oldArticles = breakingNewsResponse?.articles
+                    val newArticles = resultResponse.articles
+                    oldArticles?.addAll(newArticles)
+
+                }
+
+                return Resource.Success(breakingNewsResponse ?: resultResponse)
             }
         }
         return Resource.Error(response.message())
@@ -75,7 +89,18 @@ class NewsViewModel(val newsRepository: NewsRepository) : ViewModel() {
 
         if (response.isSuccessful) {
             response.body()?.let { resultResponse ->
-                return Resource.Success(resultResponse)
+                searchNewsPage++
+
+                if (searchNewsResponse == null) {
+                    searchNewsResponse = resultResponse
+                } else {
+                    val oldArticles = searchNewsResponse?.articles
+                    val newArticles = resultResponse.articles
+                    oldArticles?.addAll(newArticles)
+
+                }
+
+                return Resource.Success(searchNewsResponse ?: resultResponse)
             }
         }
         return Resource.Error(response.message())

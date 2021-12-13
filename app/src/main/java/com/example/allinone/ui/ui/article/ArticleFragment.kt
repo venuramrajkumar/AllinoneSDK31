@@ -40,7 +40,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         val article = args.article
         binding?.webView.apply {
             this?.webViewClient = WebViewClient()
-            this?.loadUrl(article.url)
+            article.url?.let { this?.loadUrl(it) }
         }
 
         binding?.fab?.setOnClickListener {

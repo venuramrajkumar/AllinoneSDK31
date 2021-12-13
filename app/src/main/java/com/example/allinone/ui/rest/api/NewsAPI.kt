@@ -13,6 +13,9 @@ interface NewsAPI {
         @Query ("country")
         countryCode : String = "us",
 
+        @Query("page")
+        pagenumber: Int ,
+
         @Query("category")
         category: String = "business",
 
@@ -34,6 +37,8 @@ interface NewsAPI {
 
         @Query("sortBy")
         sortBy : String = "popularity",*/
+        @Query("page")
+        pagenumber: Int ,
 
         @Query("apiKey")
         apikey : String = API_KEY
