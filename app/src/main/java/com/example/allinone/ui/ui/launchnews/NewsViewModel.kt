@@ -5,10 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.allinone.ui.model.Article
 import com.example.allinone.ui.model.NewsResponse
 import com.example.allinone.ui.repository.NewsRepository
 import com.example.allinone.ui.utils.Resource
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -78,6 +80,19 @@ class NewsViewModel(val newsRepository: NewsRepository) : ViewModel() {
         }
         return Resource.Error(response.message())
     }
+
+    fun saveAndUpdateArticles(article: Article) {
+        viewModelScope.launch(Dispatchers.IO) {
+            newsRepository.saveAndUpdateArticles(article)
+        }
+    }
+
+    fun getSavedNews() = newsRepository.getSavedNews()
+
+    fun deleteArticle(article: Article) = viewModelScope.launch {
+        newsRepository.deleteArticle(article)
+    }
+
 
     override fun onCleared() {
         super.onCleared()

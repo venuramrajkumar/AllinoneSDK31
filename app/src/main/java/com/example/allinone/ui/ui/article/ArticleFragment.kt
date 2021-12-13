@@ -12,6 +12,7 @@ import com.example.allinone.R
 import com.example.allinone.databinding.FragmentArticleBinding
 import com.example.allinone.ui.ui.launchnews.NewsActivity
 import com.example.allinone.ui.ui.launchnews.NewsViewModel
+import com.google.android.material.snackbar.Snackbar
 
 
 class ArticleFragment : Fragment(R.layout.fragment_article) {
@@ -41,6 +42,12 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
             this?.webViewClient = WebViewClient()
             this?.loadUrl(article.url)
         }
+
+        binding?.fab?.setOnClickListener {
+            viewModel.saveAndUpdateArticles(article)
+            Snackbar.make(view,"Article Saved Successfully",Snackbar.LENGTH_SHORT).show()
+        }
+
         val supportActionBar = (activity as NewsActivity).supportActionBar
         supportActionBar?.title = article.title
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
