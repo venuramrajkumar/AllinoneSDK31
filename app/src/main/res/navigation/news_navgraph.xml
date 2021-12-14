@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_breakingnews"
-        android:name="com.example.allinone.ui.ui.breakingnews.BreakingNewsFragment"
+        android:name="com.example.allinone.ui.news.ui.breakingnews.BreakingNewsFragment"
         android:label="@string/title_breakingnews"
         tools:layout="@layout/fragment_breakingnews" >
         <action
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/navigation_savednews"
-        android:name="com.example.allinone.ui.ui.savednews.SavedNewsFragment"
+        android:name="com.example.allinone.ui.news.ui.savednews.SavedNewsFragment"
         android:label="@string/title_savednews"
         tools:layout="@layout/fragment_savednews" >
         <action
@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/navigation_searchnews"
-        android:name="com.example.allinone.ui.ui.searchnews.SearchNewsFragment"
+        android:name="com.example.allinone.ui.news.ui.searchnews.SearchNewsFragment"
         android:label="@string/title_searchnews"
         tools:layout="@layout/fragment_searchnews" >
         <action
@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
-        android:name="com.example.allinone.ui.ui.article.ArticleFragment"
+        android:name="com.example.allinone.ui.news.ui.article.ArticleFragment"
         android:label="ArticleFragment"
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_left"
@@ -57,6 +57,6 @@
         app:popExitAnim="@anim/slide_out_right" >
         <argument
             android:name="article"
-            app:argType="com.example.allinone.ui.model.Article" />
+            app:argType="com.example.allinone.ui.news.model.Article" />
     </fragment>
 </navigation>

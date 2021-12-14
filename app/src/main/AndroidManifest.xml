@@ -14,11 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AllInOne" >
         <activity
-            android:name=".ui.ui.launchnews.NewsActivity"
+            android:name="com.example.allinone.ui.news.ui.launchnews.NewsActivity"
             android:exported="false"
             android:label="@string/title_activity_navigation_host" />
         <activity
-            android:name=".ui.ui.MainDemoActivity"
+            android:name="com.example.allinone.ui.news.ui.MainDemoActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
