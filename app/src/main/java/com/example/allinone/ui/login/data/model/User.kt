@@ -1,4 +1,4 @@
-package com.example.allinone.ui.login.model
+package com.example.allinone.ui.login.data.model
 
 data class User(
     val access_token: String?,

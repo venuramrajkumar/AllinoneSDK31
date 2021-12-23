@@ -1,7 +1,7 @@
 package com.example.allinone.ui.login.api
 
 
-import com.example.allinone.ui.login.model.LoginResponse
+import com.example.allinone.ui.login.data.model.LoginResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

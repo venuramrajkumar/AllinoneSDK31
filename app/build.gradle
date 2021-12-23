@@ -152,4 +152,10 @@ dependencies {
 
 //    implementation "androidx.preference:preference-ktx:1.1.1"
 
+    //Jetpack Data store preferences
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+    implementation "androidx.datastore:datastore-preferences-rxjava3:1.0.0"
+    //We are using RxJava. We can use coroutines too.
+
+
 }

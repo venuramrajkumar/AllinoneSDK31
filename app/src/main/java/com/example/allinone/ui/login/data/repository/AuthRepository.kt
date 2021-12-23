@@ -1,8 +1,8 @@
-package com.example.allinone.ui.login.repository
+package com.example.allinone.ui.login.data.repository
 
 
 import com.example.allinone.ui.login.api.AuthApi
-import com.example.allinone.ui.login.model.LoginResponse
+import com.example.allinone.ui.login.data.model.LoginResponse
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 

@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.allinone.ui.login.model.LoginResponse
+import com.example.allinone.ui.login.data.model.LoginResponse
 
-import com.example.allinone.ui.login.repository.AuthRepository
+import com.example.allinone.ui.login.data.repository.AuthRepository
 import com.example.allinone.ui.utils.Resource
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.SingleObserver
