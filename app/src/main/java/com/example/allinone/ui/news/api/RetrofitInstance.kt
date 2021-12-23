@@ -1,6 +1,6 @@
 package com.example.allinone.ui.news.api
 
-import com.example.allinone.ui.utils.Constants.BASE_URL
+import com.example.allinone.ui.utils.Constants.NEWS_BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,7 +18,7 @@ class RetrofitInstance {
                 .build()
 
             Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(NEWS_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

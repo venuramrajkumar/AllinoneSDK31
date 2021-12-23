@@ -38,4 +38,6 @@ object NetworkUtils {
         return false
     }
 
+    fun getToken() : String = "e48182773fa67711b131bbd4457d633aa1b5d85481b476155fa63c8517e6b276"
+
 }

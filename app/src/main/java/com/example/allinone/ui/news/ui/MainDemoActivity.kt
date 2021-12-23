@@ -1,9 +1,10 @@
 package com.example.allinone.ui.news.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.allinone.databinding.ActivityMainBinding
+import com.example.allinone.ui.login.ui.AuthActivity
 import com.example.allinone.ui.news.ui.launchnews.NewsActivity
 
 class MainDemoActivity : AppCompatActivity() {
@@ -21,6 +22,10 @@ class MainDemoActivity : AppCompatActivity() {
     private fun setListeners() {
         binding.newsapp.setOnClickListener {
             startActivity(Intent(this, NewsActivity::class.java))
+        }
+
+        binding.login.setOnClickListener {
+            startActivity(Intent(this, AuthActivity::class.java))
         }
 
     }
