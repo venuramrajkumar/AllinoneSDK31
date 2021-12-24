@@ -3,17 +3,21 @@ package com.example.allinone.ui.login.ui
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.allinone.databinding.FragmentLoginBinding
 import com.example.allinone.ui.login.base.BaseFragment
-import com.example.allinone.ui.login.data.UserPreferences
 import com.example.allinone.ui.login.data.model.LoginResponse
 import com.example.allinone.ui.login.viewmodel.LoginViewModel
+import com.example.allinone.ui.news.ui.launchnews.NewsActivity
 import com.example.allinone.ui.utils.Resource
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
+import com.example.allinone.ui.utils.enable
+import com.example.allinone.ui.utils.startNewActivity
+import com.example.allinone.ui.utils.visible
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
@@ -21,34 +25,29 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    @Inject
-    lateinit var userPreferences: UserPreferences
 
     @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val viewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
-
+        binding.progressbar.visible(false)
         setObservers(viewModel)
 
         binding.buttonLogin.setOnClickListener {
             val email = binding.editTextTextEmailAddress.text.toString().trim()
             val password = binding.editTextTextPassword.text.toString().trim()
 
+            binding.progressbar.visible(true)
+            binding.buttonLogin.enable(false)
             viewModel.makeLogin(email, password)
         }
 
-
+        binding.editTextTextPassword.addTextChangedListener {
+            val email = binding.editTextTextEmailAddress.text.toString().trim()
+            binding.buttonLogin.enable(email.isNotEmpty() && it.toString().isNotEmpty())
+        }
 
         binding.textViewRegisterNow.setOnClickListener {
-            var accessToken: String? = null
-            userPreferences.accessToken.
-            subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe {
-                    accessToken = it
-                    Toast.makeText(activity, accessToken ,Toast.LENGTH_SHORT).show()
-                }
             //findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
 
         }
@@ -57,22 +56,31 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     private fun setObservers(viewModel: LoginViewModel) {
         val loginObserver = Observer<Resource<LoginResponse>> {
+            binding.progressbar.visible(false)
             when (it) {
                 is Resource.Success -> {
                     Toast.makeText(
-                        activity,
+                        requireActivity(),
                         "Login Result ${it.data?.user.toString()}",
                         Toast.LENGTH_LONG
                     ).show()
-                    userPreferences.saveAuthToken(it.data?.user?.access_token.toString())
+                    lifecycleScope.launch {
+                        viewModel.saveAuthToken(
+                            it.data?.user?.access_token.toString(),
+                            it.data?.user?.refresh_token.toString()
+                        )
+                        requireActivity().startNewActivity(NewsActivity::class.java)
+                    }
+
                 }
 
                 is Resource.Error -> {
                     Toast.makeText(
-                        activity,
+                        requireActivity(),
                         "Login Failure ${it?.message.toString()}",
                         Toast.LENGTH_LONG
                     ).show()
+                    binding.buttonLogin.enable(false)
                 }
 
             }

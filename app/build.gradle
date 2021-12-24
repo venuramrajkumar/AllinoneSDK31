@@ -54,6 +54,12 @@ dependencies {
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    //for lazy viewmodel
+    //implementation "androidx.activity:activity-ktx:1.4.0"
+
+    implementation "androidx.fragment:fragment-ktx:1.4.0"
+
     // ViewModel utilities for Compose
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
     // LiveData
@@ -155,6 +161,7 @@ dependencies {
     //Jetpack Data store preferences
     implementation "androidx.datastore:datastore-preferences:1.0.0"
     implementation "androidx.datastore:datastore-preferences-rxjava3:1.0.0"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:2.4.0"
     //We are using RxJava. We can use coroutines too.
 
 

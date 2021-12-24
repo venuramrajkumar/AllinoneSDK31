@@ -56,5 +56,9 @@ class LoginViewModel @Inject constructor(var authRepository: AuthRepository) : V
         dispose()
     }
 
+    suspend fun saveAuthToken(authToken: String,refreshToken : String) {
+        authRepository.saveAuthToken(authToken,refreshToken)
+    }
+
 
 }

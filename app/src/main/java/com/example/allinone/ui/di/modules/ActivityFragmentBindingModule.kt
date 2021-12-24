@@ -2,6 +2,8 @@ package com.example.allinone.ui.di.modules
 
 
 
+import com.example.allinone.ui.login.home.HomeActivity
+import com.example.allinone.ui.login.home.HomeFragment
 import com.example.allinone.ui.login.ui.AuthActivity
 import com.example.allinone.ui.login.ui.LoginFragment
 import com.example.allinone.ui.login.ui.RegisterFragment
@@ -16,6 +18,12 @@ abstract class ActivityFragmentBindingModule {
 
     @ContributesAndroidInjector
     abstract fun bindAuthActivity(): AuthActivity
+
+    @ContributesAndroidInjector
+    abstract fun bindHomeActivity(): HomeActivity
+
+    @ContributesAndroidInjector
+    abstract fun bindHomeFragment(): HomeFragment
 
     @ContributesAndroidInjector
     abstract fun bindLoginFragment() : LoginFragment
