@@ -8,7 +8,8 @@ import com.example.allinone.R
 import com.example.allinone.databinding.FragmentHomeBinding
 import com.example.allinone.ui.login.data.model.User
 import com.example.allinone.ui.utils.Resource
-import com.example.allinone.ui.utils.handleApiError
+import com.example.allinone.ui.utils.Resource.Failure
+import com.example.allinone.ui.utils.handleApiErrors
 import com.example.allinone.ui.utils.logout
 import com.example.allinone.ui.utils.visible
 import dagger.android.support.DaggerFragment
@@ -42,8 +43,9 @@ class HomeFragment : DaggerFragment(R.layout.fragment_home) {
                 is Resource.Loading -> {
                     binding.progressbar.visible(true)
                 }
-                is Resource.Error -> {
-                    handleApiError(it.message!!)
+                is Failure -> {
+                    binding.progressbar.visible(false)
+                    handleApiErrors(it)
                 }
             }
         })

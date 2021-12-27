@@ -16,6 +16,8 @@ interface UserApi {
     ): Single<LoginResponse>
 
     @POST("logout")
-    suspend fun logout(): ResponseBody
+    suspend fun logout(
+        @HeaderMap map : Map<String,String>
+    ): ResponseBody
 
 }

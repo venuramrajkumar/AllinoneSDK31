@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.allinone.ui.login.home.HomeActivity
+import com.example.allinone.ui.login.ui.LoginFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
@@ -45,10 +46,65 @@ fun Fragment.handleApiError(
     failure: String,
     retry: (() -> Unit)? = null
 ) {
-    requireView().snackbar(failure)
+    requireView().snackbar(failure,retry)
 }
 
+fun Fragment.handleApiErrors(
+    failure: Resource.Failure,
+    retry: (() -> Unit)? = null
+) {
+    when {
+        failure.isNetworkError -> requireView().snackbar(
+            "Please check your internet connection",
+            retry
+        )
+        failure.errorCode == 401 -> {
+            if (this is LoginFragment) {
+                requireView().snackbar("You've entered incorrect email or password")
+            } else {
+                logout()
+            }
+        }
+        else -> {
+            val error = failure.errorBody?.string().toString()
+            requireView().snackbar(error)
+        }
+    }
 
+}
+
+//sealed class Resource<out T> {
+//    data class Success<out T>(val value: T) : Resource<T>()
+//    data class Failure(
+//        val isNetworkError: Boolean,
+//        val errorCode: Int?,
+//        val errorBody: ResponseBody?
+//    ) : Resource<Nothing>()
+//    object Loading : Resource<Nothing>()
+//}
+
+//fun Fragment.handleApiError(
+//    failure: Resource.Failure,
+//    retry: (() -> Unit)? = null
+//) {
+//    when {
+//        failure.isNetworkError -> requireView().snackbar(
+//            "Please check your internet connection",
+//            retry
+//        )
+//        failure.errorCode == 401 -> {
+//            if (this is LoginFragment) {
+//                requireView().snackbar("You've entered incorrect email or password")
+//            } else {
+//                logout()
+//            }
+//        }
+//        else -> {
+//            val error = failure.errorBody?.string().toString()
+//            requireView().snackbar(error)
+//        }
+//    }
+//}
 
 
 

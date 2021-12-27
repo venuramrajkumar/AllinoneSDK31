@@ -24,6 +24,10 @@ class UserRepository @Inject constructor(
         return userPreferences.refreshToken.first().toString()
     }
 
+    suspend fun getSavedAccessToken() : String {
+        return userPreferences.accessToken.first().toString()
+    }
+
     suspend fun saveTokens(access: String, refreshToken: String) {
         userPreferences.saveAccessTokens(access,refreshToken)
     }
@@ -35,7 +39,7 @@ class UserRepository @Inject constructor(
 
 
 
-    suspend fun logout() = userAPi.logout()
+    suspend fun logout(map : Map<String,String>) = userAPi.logout(map)
 
 
 }

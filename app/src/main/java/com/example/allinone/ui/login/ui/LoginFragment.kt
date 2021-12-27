@@ -10,8 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import com.example.allinone.databinding.FragmentLoginBinding
 import com.example.allinone.ui.login.base.BaseFragment
 import com.example.allinone.ui.login.data.model.LoginResponse
+import com.example.allinone.ui.login.home.HomeActivity
 import com.example.allinone.ui.login.viewmodel.LoginViewModel
-import com.example.allinone.ui.news.ui.launchnews.NewsActivity
 import com.example.allinone.ui.utils.Resource
 import com.example.allinone.ui.utils.enable
 import com.example.allinone.ui.utils.startNewActivity
@@ -69,7 +69,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                             it.data?.user?.access_token.toString(),
                             it.data?.user?.refresh_token.toString()
                         )
-                        requireActivity().startNewActivity(NewsActivity::class.java)
+                        requireActivity().startNewActivity(HomeActivity::class.java)
                     }
 
                 }

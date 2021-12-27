@@ -17,6 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
@@ -40,7 +41,7 @@ class HomeViewModel @Inject constructor(
                 savedRefreshToken = repository.getSavedRefreshToken()
             }
         }
-
+        _user.postValue(Resource.Loading())
         repository.getRefreshToken(savedRefreshToken)
             .subscribeOn(Schedulers.io())
             .flatMap { tokenResponse ->
@@ -63,14 +64,27 @@ class HomeViewModel @Inject constructor(
 
                 override fun onError(e: Throwable) {
                     Log.d("HomeViewModel error ", e.message.toString())
-                    _user.postValue(Resource.Error(e.message.toString()))
+                    var error : Resource.Failure? = null
+
+                    when (e) {
+                        is HttpException -> {
+                            error = Resource.Failure(false, e.code(), e.response()?.errorBody())
+                        }
+                        else -> {
+                            error = Resource.Failure(true, null, null)
+                        }
+                    }
+
+                    _user.postValue(error!!)
                 }
 
             })
 
     }
 
-    suspend fun logout() = withContext(Dispatchers.IO) { repository.logout() }
+    suspend fun logout() = withContext(Dispatchers.IO) {
+        val accessToken = repository.getSavedAccessToken()
+        repository.logout(getHeaderMap(accessToken)) }
 
     fun getHeaderMap(refreshToken: String?): Map<String, String> {
         val headerMap = mutableMapOf<String, String>()
