@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.notification.NotificationDemoActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="40dp"
+        app:layout_constraintStart_toStartOf="parent">
+    </androidx.constraintlayout.widget.Guideline>
+
+
+    <Button
+        android:id="@+id/triggernotification"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Trigger Notification"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/cancelNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel Notification"
+        app:layout_constraintBottom_toTopOf="@+id/updateNotification"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/triggernotification" />
+
+    <Button
+        android:id="@+id/updateNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Update Notification"
+        app:layout_constraintTop_toBottomOf="@+id/cancelNotification"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+         />
+
+    <Button
+        android:id="@+id/stackBuilderNavigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/updateNotification"
+        android:text="Gmail Behaviour/StackBuilder" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

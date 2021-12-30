@@ -10,6 +10,7 @@ import com.example.allinone.ui.login.data.UserPreferences
 import com.example.allinone.ui.login.home.HomeActivity
 import com.example.allinone.ui.login.ui.AuthActivity
 import com.example.allinone.ui.news.ui.launchnews.NewsActivity
+import com.example.allinone.ui.notification.NotificationDemoActivity
 import com.example.allinone.ui.utils.startNewActivity
 
 class MainDemoActivity : AppCompatActivity() {
@@ -26,6 +27,10 @@ class MainDemoActivity : AppCompatActivity() {
     private fun setListeners() {
         binding.newsapp.setOnClickListener {
             startActivity(Intent(this, NewsActivity::class.java))
+        }
+
+        binding.notifications.setOnClickListener {
+            startActivity(Intent(this, NotificationDemoActivity::class.java))
         }
 
         binding.login.setOnClickListener {

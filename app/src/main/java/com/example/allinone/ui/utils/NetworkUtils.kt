@@ -1,17 +1,16 @@
 package com.example.allinone.ui.utils
 
-import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import com.example.allinone.ui.NewsApplication
 
 object NetworkUtils {
-    lateinit var application : Application
 
     fun hasActiveInternet(): Boolean {
         val connectivityManager: ConnectivityManager =
-            application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            NewsApplication.application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val activeNetwork = connectivityManager.activeNetwork ?: return false

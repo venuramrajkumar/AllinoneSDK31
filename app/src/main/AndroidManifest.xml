@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.allinone">
+    package="com.example.allinone" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,9 +11,20 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AllInOne">
+        android:theme="@style/Theme.AllInOne"
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name=".ui.notification.IntermediateActivity"
+            android:parentActivityName=".ui.notification.NotificationDemoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.notification.NotificationDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.notification.IntermediateActivity" />
+        <activity
+            android:name=".ui.notification.NotificationDemoActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.login.ui.AuthActivity"
             android:exported="false" />
@@ -26,7 +37,7 @@
             android:label="@string/title_activity_navigation_host" />
         <activity
             android:name=".ui.news.ui.MainDemoActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
