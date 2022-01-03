@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "All in One"
 include ':app'
+include ':javaprogramming'
