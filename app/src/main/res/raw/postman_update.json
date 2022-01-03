@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "e0a143d5-3950-477b-b634-cc88365cf846",
+		"name": "FCM Sample APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "FCM Message POST - WITHOUT_NOTIFICATION",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "key=<Enter your server key from Firebase messaging settings>"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"to\" : \"<User the token that you receive from FCM in mobile app here>\",\n\t\"collapse_key\" : \"type_a\",\n\t\"data\" : {\n\t\t\"body\" : \"First Notification\",\n\t\t\"title\": \"ALT App Testing\",\n\t\t\"key_1\" : \"Data for key one\",\n\t\t\"key_2\" : \"Hellowww\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "https://fcm.googleapis.com/fcm/send",
+					"protocol": "https",
+					"host": [
+						"fcm",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"fcm",
+						"send"
+					]
+				},
+				"description": "Send Direct Message to Device with given id. HTTP Request."
+			},
+			"response": []
+		},
+		{
+			"name": "FCM Message POST - WITH NOTIFICATION",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "key=<Enter your server key from Firebase messaging settings>"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"to\" : \"<User the token that you receive from FCM in mobile app here>\",\n\t\"collapse_key\" : \"type_a\",\n\t\"notification\" : {\n     \"body\" : \"This is a justa sample notification\",\n     \"title\": \"FCM Notification\"\n\t},\n\t\"data\" : {\n     \"body\" : \"Body of Your Notification in Data\",\n     \"title\": \"Title of Your Notification in Title\",\n     \"key_1\" : \"Value for key_1\",\n     \"key_2\" : \"Value for key_2\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "https://fcm.googleapis.com/fcm/send",
+					"protocol": "https",
+					"host": [
+						"fcm",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"fcm",
+						"send"
+					]
+				},
+				"description": "Send Direct Message to Device with given id. HTTP Request."
+			},
+			"response": []
+		}
+	]
+}
