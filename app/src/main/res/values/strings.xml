@@ -17,4 +17,7 @@
     <string name="NEWS_CHANNEL_ID">news</string>
     <string name="CHANNEL_NEWS">News</string>
     <string name="CHANNEL_DESCRIPTION">Get informed with new updates</string>
+    <string name="Debug_Tag">AllinOne Debug</string>
+    <string name="msg_token_fmt" translatable="false">Token: %s</string>
+
 </resources>
