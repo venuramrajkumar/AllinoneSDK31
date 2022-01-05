@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.allinone" >
+    package="com.example.allinone">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -13,20 +13,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AllInOne"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.mulititableroom.RoomDbDemoActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notification" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/NEWS_CHANNEL_ID" />
-
         <meta-data
             android:name="firebase_messaging_auto_init_enabled"
             android:value="false" />
@@ -36,8 +36,8 @@
 
         <activity
             android:name=".ui.notification.IntermediateActivity"
-            android:parentActivityName=".ui.notification.NotificationDemoActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".ui.notification.NotificationDemoActivity" />
         <activity
             android:name=".ui.notification.NotificationDetailActivity"
             android:exported="false"
@@ -57,7 +57,7 @@
             android:label="@string/title_activity_navigation_host" />
         <activity
             android:name=".ui.news.ui.MainDemoActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -65,10 +65,11 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".ui.notification.AllinOneFireBaseMessagingService"
+        <service
+            android:name=".ui.notification.AllinOneFireBaseMessagingService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
     </application>

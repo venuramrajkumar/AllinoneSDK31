@@ -12,6 +12,7 @@ import com.example.allinone.databinding.ActivityMainBinding
 import com.example.allinone.ui.login.data.UserPreferences
 import com.example.allinone.ui.login.home.HomeActivity
 import com.example.allinone.ui.login.ui.AuthActivity
+import com.example.allinone.ui.mulititableroom.RoomDbDemoActivity
 import com.example.allinone.ui.news.ui.launchnews.NewsActivity
 import com.example.allinone.ui.notification.NotificationDemoActivity
 import com.example.allinone.ui.utils.startNewActivity
@@ -68,6 +69,11 @@ class MainDemoActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
+
+        binding.roomDemo.setOnClickListener {
+            startActivity(Intent(this, RoomDbDemoActivity::class.java))
+        }
+
         binding.newsapp.setOnClickListener {
             startActivity(Intent(this, NewsActivity::class.java))
         }
