@@ -17,7 +17,7 @@ class HomeActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var userPreferences: UserPreferences
 
-    //private val viewModel by viewModels<HomeViewModel>()
+    //private val viewModel :HomeViewModel  by viewModels()
     lateinit var viewModel : HomeViewModel
 
     @Inject

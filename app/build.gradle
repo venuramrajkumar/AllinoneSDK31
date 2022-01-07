@@ -172,5 +172,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:2.4.0"
     //We are using RxJava. We can use coroutines too.
 
+    //Biometric
+    implementation 'androidx.biometric:biometric:1.1.0'
+
 
 }
