@@ -3,14 +3,32 @@ package com.raj.javaprogramming;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FindPairInArrayForGivenSum {
 
     public static void main(String[] args) {
 
-//        findArraySumSimple();
-//          findArraySumSimple2();
+        findArraySumSimple();
+          findArraySumSimple2();
             findArraySumBest();
+            getUrl();
+    }
+
+    private static void getUrl() {
+        String input = "<a href= \"http://venuram@blogspot.com\">NEELAM</a>";
+        String regexf
+                = "\\b((?:https|http):"
+                + "//[-a-zA-Z0-9+&@#/%?="
+                + "~_|!:, .;]*[-a-zA-Z0-9+"
+                + "&@#/%=~_|])";
+
+        Pattern p = Pattern.compile(regexf, Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(input);
+        if(m.find())
+        System.out.println(input.substring(m.start(),m.end()));
+
     }
 
     private static void findArraySumBest() {
